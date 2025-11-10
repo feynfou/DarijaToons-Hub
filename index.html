@@ -6,158 +6,129 @@
   <title>DarijaToons — Play Hub / دارجاتونز — مركز الألعاب</title>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    :root{
-      --bg: #ffffff;
-      --card: #ffffff;
-      --accent: #34d399;
-      --accent-2: #facc15;
-      --text: #0f172a;
-      --muted: #64748b;
-      --shadow: 0 6px 18px rgba(15,23,42,0.08);
-      --radius: 16px;
-      --gap: 12px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
     }
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);}
-    .wrap{max-width:900px;margin:0 auto;padding:18px;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box;}
 
-    /* Updated header */
-    header{
-      display:flex;
-      flex-direction:column;  /* stack logo and text vertically */
-      align-items:center;     /* center horizontally */
-      gap:12px;
-      margin-bottom:24px;
-      text-align:center;      /* center the text */
+    #app { text-align: center; width: 100%; max-width: 600px; }
+
+    h1 { font-size: 1.6rem; margin-bottom: 1rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; margin-top: 20px; }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
     }
-    /* .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);} */
-    .title{font-size:28px;font-weight:700;line-height:1.2} /* bigger title */
-    .subtitle{font-size:18px;color:var(--muted);line-height:1.3} /* bigger subtitle */
-    
-    .intro{margin:14px 0 18px}
-    .intro h1{font-size:20px;margin:0 0 6px}
-    .intro p{margin:0;color:var(--muted);font-size:13px}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);}
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:14px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow);text-decoration:none;color:inherit;
-      transition:transform .14s ease, box-shadow .14s ease;
-      height:108px;overflow:hidden;
+
+    .card:hover { transform: scale(1.05); }
+
+    .icon {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      flex-shrink: 0;
+      overflow: hidden;
     }
-    .card:active{transform:translateY(2px)}
-    .card .icon{flex:0 0 68px;height:68px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.03),rgba(0,0,0,0.02));}
-    .card .content{flex:1;min-width:0}
-    .card .label{font-weight:700;font-size:16px;margin-bottom:4px}
-    .card .tag{font-size:12px;color:var(--muted)}
-    .card[data-card="discover"] .icon{background:linear-gradient(135deg,var(--accent),#60a5fa)}
-    .card[data-card="listen"] .icon{background:linear-gradient(135deg,#f472b6,#fb923c)}
-    .card[data-card="speak"] .icon{background:linear-gradient(135deg,#a78bfa,#60a5fa)}
-    .card[data-card="read"] .icon{background:linear-gradient(135deg,#facc15,#fb7185)}
-    .card[data-card="write"] .icon{background:linear-gradient(135deg,#34d399,#60a5fa)}
-    .card[data-card="treasure"] .icon{background:linear-gradient(135deg,#f97316,#facc15)}
-    .small{font-size:12px;color:var(--muted)}
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;pointer-events:none}
-    .modal .box{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);max-width:420px;width:100%;pointer-events:auto}
-    .modal.hidden{display:none}
-    footer{margin-top:auto;padding:18px 0 8px;color:var(--muted);font-size:13px;text-align:center}
+/* CODE ADDED BY Malik to incease icon size :)*/
+ .card svg {
+      width: 80px;
+      height: 80px;
+      /* color: #d71690; */
+      margin-bottom: 0.5rem;
+    }
+
+/* CODE ADDED BY Malik for card colors */
+
+.card[data-card="discover"] { background: linear-gradient(135deg, #34d399, #60a5fa); }
+.card[data-card="listen"]   { background: linear-gradient(135deg, #f472b6, #fb923c); }
+.card[data-card="speak"]    { background: linear-gradient(135deg, #a78bfa, #60a5fa); }
+.card[data-card="read"]     { background: linear-gradient(135deg, #facc15, #fb7185); }
+.card[data-card="write"]    { background: linear-gradient(135deg, #34d399, #60a5fa); }
+.card[data-card="treasure"] { background: linear-gradient(135deg, #f97316, #facc15); }
+
+
+    /* Bigger icon itself */
+    .icon i {
+      width: 100%;   /* fill container */
+      height: 100%;  /* fill container */
+    }
+
+    /* --- Colored icons --- */
+    /* .card[data-card="discover"] .icon { color: #34d399; }
+    .card[data-card="listen"]   .icon { color: #f472b6; }
+    .card[data-card="speak"]    .icon { color: #a78bfa; }
+    .card[data-card="read"]     .icon { color: #facc15; }
+    .card[data-card="write"]    .icon { color: #34d399; }
+    .card[data-card="treasure"] .icon { color: #f97316; } */
+
+    .card .label { font-size: 1rem; font-weight: 500; color: #000; text-align: center; }
+
+    .small { font-size: 0.9rem; color: #64748b; margin-top: 15px; }
+
+    footer { margin-top: 20px; color: #64748b; font-size: 0.9rem; text-align:center; }
+
+    @media (min-width:600px){ .grid{ grid-template-columns:repeat(3,1fr); } }
+    @media (min-width:900px){ #app{ max-width:700px; } }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo" aria-hidden>
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <circle cx="32" cy="32" r="30" fill="white" opacity="0.06"/>
-          <path d="M32 14c3 0 5 2 6 4 2 1 4 3 4 8s-3 12-10 12-10-7-10-12 2-8 4-8c1-2 3-4 6-4z" fill="#0f172a" opacity="0.85"/>
-        </svg>
-      </div>
-      <div>
-        <div class="title">DarijaToons Playland</div>
-       </div>
-    </header>
-<!-- 
-    <section class="intro">
-      <h1>Where shall we play today? / واش بغيت تلعب اليوم؟</h1>
-      <p>Choose a world: discover new words with Kiko, listen to silly sounds, read tiny stories, write magic letters and speak out loud.</p>
-      <p> ! اختار عالم: اكتشف كلمات جديدة مع كيكو، سمع أصوات مضحكة، اقرا حكايات صغيرة، كتب حروف سحرية، و هدر</p>
-    </section> -->
+  <div id="app">
+    <h1>DarijaToons Play Hub / دارجاتونز — مركز الألعاب</h1>
 
-    <main>
-      <div class="grid" role="list">
+    <div class="grid">
+      <a class="card" data-card="discover" data-url="https://feynfou.github.io/DarijaToons-Books/">
+        <div class="icon"><i data-lucide="globe" stroke-width="2"></i></div>
+        <div class="label">Learn / أتعلم</div>
+      </a>
 
-        <a role="listitem" class="card" data-card="discover" data-url="https://feynfou.github.io/flashcards-app/">
-          <div class="icon" aria-hidden>
-            <i data-lucide="globe" width="40" height="40"></i>
-          </div>
-          <div class="content">
-            <div class="label">Learn / أتعلم </div>
-            <!-- <div class="tag">Tap, flip, and find new words! / قلّب و اكتشف كلمات جديدة!</div> -->
-          </div>
-        </a>
+      <a class="card" data-card="listen" data-url="https://feynfou.github.io/Darijatoons-Quiz/">
+        <div class="icon"><i data-lucide="headphones" stroke-width="2"></i></div>
+        <div class="label">Listen / أسمع</div>
+      </a>
 
-        <a role="listitem" class="card" data-card="listen" data-url="https://feynfou.github.io/Darijatoons-Quiz/">
-          <div class="icon" aria-hidden>
-            <i data-lucide="headphones" width="40" height="40"></i>
-          </div>
-          <div class="content">
-            <div class="label">Listen /  أسمع </div>
-            <!-- <div class="tag">Can you guess what you hear? / تقدر تعرف واش سمعت؟</div> -->
-          </div>
-        </a>
+      <a class="card" data-card="speak" data-url="https://feynfou.github.io/flashcards-app/">
+        <div class="icon"><i data-lucide="message-circle" stroke-width="2"></i></div>
+        <div class="label">Talk / أهدر</div>
+      </a>
 
-        <a role="listitem" class="card" data-card="speak" data-url="https://feynfou.github.io/flashcards-app/">
-          <div class="icon" aria-hidden>
-            <i data-lucide="message-circle" width="40" height="40"></i>
-          </div>
-          <div class="content">
-            <div class="label">Talk / أهدر  </div>
-            <!-- <div class="tag">Say the words with me! / قُل الكلمات معايا!</div> -->
-          </div>
-        </a>
+      <a class="card" data-card="read" data-url="https://feynfou.github.io/Darijatoons-Quiz/">
+        <div class="icon"><i data-lucide="book-open" stroke-width="2"></i></div>
+        <div class="label">Stories / حكايات</div>
+      </a>
 
-        <a role="listitem" class="card" data-card="read" data-url="https://feynfou.github.io/Darijatoons-Quiz/">
-          <div class="icon" aria-hidden>
-            <i data-lucide="book-open" width="40" height="40"></i>
-          </div>
-          <div class="content">
-            <div class="label">Stories /  حكايات </div>
-            <!-- <div class="tag">Let’s read tiny tales in Darija! / اقرأ حكايات صغيرة بالدارجة!</div> -->
-          </div>
-        </a>
+      <a class="card" data-card="write" data-url="#replace-me-write-TBD">
+        <div class="icon"><i data-lucide="edit" stroke-width="2"></i></div>
+        <div class="label">Letters / حروف</div>
+      </a>
 
-        <a role="listitem" class="card" data-card="write" data-url="#replace-me-write-TBD">
-          <div class="icon" aria-hidden>
-            <i data-lucide="edit" width="40" height="40"></i>
-          </div>
-          <div class="content">
-            <div class="label">Letters / حروف </div>
-            <!-- <div class="tag">Trace, draw, and make words appear! / ارسم، كتب، وخلي الكلمات تبان!</div> -->
-          </div>
-        </a>
-
-        <a role="listitem" class="card" data-card="treasure" data-url="https://feynfou.github.io/Darijatoons-Memory/">
-          <div class="icon" aria-hidden>
-            <i data-lucide="gamepad-2" width="40" height="40"></i>
-          </div>
-          <div class="content">
-            <div class="label">Treasure / ألعب </div>
-            <!-- <div class="tag">Collect stickers & prizes! / جمع ملصقات و جوائز!</div> -->
-          </div>
-        </a>
-
-      </div>
-    </main>
-
-    <div class="small" style="margin-top:12px">⚠️ Work in progress! ***** !صبر شوية، مزال خدامين عليه ⚠️</div>
-
-    <div id="modal" class="modal hidden" aria-hidden="true">
-      <div class="box" role="dialog" aria-modal="true">
-        <div style="font-weight:700;margin-bottom:6px">Link not set / الرابط مازال ما تحددش</div>
-        <div style="color:var(--muted);margin-bottom:12px">This game page hasn't been added yet. / هاد اللعبة مازال ما زالتش مضافة. Replace <code>data-url</code> with your game's URL / بدل <code>data-url</code> ب URL ديال اللعبة.</div>
-        <div style="text-align:right"><button id="closeBtn" style="background:var(--accent);border:none;color:white;padding:8px 12px;border-radius:10px;font-weight:700">OK / حسناً</button></div>
-      </div>
+      <a class="card" data-card="treasure" data-url="https://feynfou.github.io/Darijatoons-Memory/">
+        <div class="icon"><i data-lucide="gamepad-2" stroke-width="2"></i></div>
+        <div class="label">Treasure / ألعب</div>
+      </a>
     </div>
+
+    <div class="small">⚠️ Work in progress! ***** !صبر شوية، مزال خدامين عليه ⚠️</div>
 
     <footer>DarijaToons • Made with ❤️ for little learners / دارجاتونز • مصنوع ب❤️ للأطفال</footer>
   </div>
@@ -165,28 +136,13 @@
   <script>
     lucide.createIcons();
     document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', (e) => {
+      card.addEventListener('click', ()=>{
         const url = card.getAttribute('data-url') || '#';
         if(!url || url.startsWith('#replace-me')){
-          document.getElementById('modal').classList.remove('hidden');
-          document.getElementById('modal').setAttribute('aria-hidden','false');
-          document.getElementById('closeBtn').focus();
+          alert("This game page hasn't been added yet. / هاد اللعبة مازال ما زالتش مضافة.");
           return;
         }
         window.location.href = url;
-      });
-    });
-    document.getElementById('closeBtn').addEventListener('click', ()=>{
-      document.getElementById('modal').classList.add('hidden');
-      document.getElementById('modal').setAttribute('aria-hidden','true');
-    });
-    document.querySelectorAll('.card').forEach(card => {
-      card.setAttribute('tabindex','0');
-      card.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          card.click();
-        }
       });
     });
   </script>
